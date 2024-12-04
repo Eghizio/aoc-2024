@@ -3,71 +3,18 @@ import { loadInput } from "../utils";
 const toMatrix = (input: string): string[][] =>
   input.split("\n").map((line) => line.split(""));
 
-const top = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y - 1]?.[x],
-  matrix[y - 2]?.[x],
-  matrix[y - 3]?.[x],
-];
-
-const bottom = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y + 1]?.[x],
-  matrix[y + 2]?.[x],
-  matrix[y + 3]?.[x],
-];
-
-const left = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y]?.[x - 1],
-  matrix[y]?.[x - 2],
-  matrix[y]?.[x - 3],
-];
-
-const right = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y]?.[x + 1],
-  matrix[y]?.[x + 2],
-  matrix[y]?.[x + 3],
-];
-
-const topLeft = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y - 1]?.[x - 1],
-  matrix[y - 2]?.[x - 2],
-  matrix[y - 3]?.[x - 3],
-];
-
-const topRight = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y - 1]?.[x + 1],
-  matrix[y - 2]?.[x + 2],
-  matrix[y - 3]?.[x + 3],
-];
-
-const bottomLeft = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y + 1]?.[x - 1],
-  matrix[y + 2]?.[x - 2],
-  matrix[y + 3]?.[x - 3],
-];
-
-const bottomRight = (matrix: string[][], x: number, y: number) => [
-  matrix[y]?.[x],
-  matrix[y + 1]?.[x + 1],
-  matrix[y + 2]?.[x + 2],
-  matrix[y + 3]?.[x + 3],
-];
+const LineFor = (mapper: (value: any, i: number) => any, length: number = 4) =>
+  Array.from({ length }, mapper);
 
 const searchAround = (matrix: string[][], x: number, y: number) => [
-  top(matrix, x, y),
-  bottom(matrix, x, y),
-  left(matrix, x, y),
-  right(matrix, x, y),
-  topLeft(matrix, x, y),
-  topRight(matrix, x, y),
-  bottomLeft(matrix, x, y),
-  bottomRight(matrix, x, y),
+  LineFor((_, i) => matrix[y - i]?.[x]), // top
+  LineFor((_, i) => matrix[y + i]?.[x]), // bottom
+  LineFor((_, i) => matrix[y]?.[x - i]), // left
+  LineFor((_, i) => matrix[y]?.[x + i]), // right
+  LineFor((_, i) => matrix[y - i]?.[x - i]), // topLeft
+  LineFor((_, i) => matrix[y - i]?.[x + i]), // topRight
+  LineFor((_, i) => matrix[y + i]?.[x - i]), // bottomLeft
+  LineFor((_, i) => matrix[y + i]?.[x + i]), // bottomRight
 ];
 
 const searchFromLetter = (matrix: string[][]): number => {
