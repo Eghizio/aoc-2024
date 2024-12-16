@@ -1,8 +1,8 @@
-*.js
 node_modules
 *.jar
 .gradle
 .idea
 build
+dist
 local
 .DS_Store
