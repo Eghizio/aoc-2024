@@ -1,0 +1,128 @@
+:root {
+  --gap: 4px;
+  --gap: 0;
+  --size: 50px;
+  font-size: 8px;
+
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  --aoc-dark: rgb(15, 15, 35);
+  --aoc-light: 2px solid rgb(204, 204, 204);
+  --aoc-green: rgb(0, 153, 0);
+  --aoc-silver: rgb(153, 153, 204);
+  --aoc-gold: rgb(255, 255, 102);
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: red; */
+  /* filter: saturate(0.1); */
+}
+
+body,
+.column {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.row {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.cell {
+  /* border: 1px solid black; */
+  filter: none;
+  color: white;
+  /* width: var(--size);
+  height: var(--size); */
+  max-width: 4%;
+  flex: 1;
+  aspect-ratio: 1 / 1;
+}
+
+.contrast .cell {
+  filter: saturate(0);
+}
+
+.cell.highlighted {
+  filter: saturate(3);
+}
+
+.contrast-flip {
+  cursor: pointer;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: xx-large;
+  color: var(--aoc-green);
+}
+
+.contrast-flip input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--aoc-green);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.plot {
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+}
+
+/* .tailhead {
+    background-color: green !important;
+    filter: saturate(0.5) !important;
+  }
+  
+  .peak {
+    background-color: blue !important;
+    filter: saturate(1) !important;
+  } */
+
+.nav {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  font-size: xx-large;
+  background-color: var(--aoc-dark);
+  border: 2px solid var(var(--aoc-light));
+  color: var(--aoc-green);
+}
+
+.btn:hover {
+  color: var(--aoc-silver);
+}
+
+.active {
+  color: var(--aoc-gold);
+}
